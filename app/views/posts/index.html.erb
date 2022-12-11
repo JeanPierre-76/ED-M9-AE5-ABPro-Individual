@@ -1,0 +1,26 @@
+<p style="color: yellow"><%= notice %></p>
+
+<% if !params[:user_id].present? %>
+  <h1 class="display-6 mb-2">Publica tu Food's Picture</h1>
+  <%= link_to "Nueva publicación", new_post_path, class: "btn btn-warning mb-4"  %>
+<% end %>
+
+<% if params[:user_id].present? %>
+  <% @usuario = User.find_by_id(params[:user_id])%>
+  <p class="display-5">Perfil de <%= @usuario.name %> </p>
+  <p class="lead">¡Gracias por visitar el perfil de <%= @usuario.name %>!</P>
+  <p class="lead">Estas son sus publicaciones: </P>
+<% end %>
+
+  <div id="posts">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col">
+          <%= render post %>
+      </div>
+    <% end %>
+  </div>
+
+<% if params[:user_id].present? %>
+  <%= link_to "Volver a publicaciones", posts_path, class: "btn btn-primary mb-4" %>
+<% end %>

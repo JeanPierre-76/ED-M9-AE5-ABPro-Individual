@@ -1,0 +1,38 @@
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+# local:
+#   service: Disk
+#   root: <%= Rails.root.join("storage") %>
+
+# Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
+amazon:
+  service: S3
+  access_key_id: AKIAR5OCX7PBNOWCMTWL
+  secret_access_key: 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
+  region: sa-east-1
+  bucket: m9ae4individual
+  time_out_xon: 5000 ms
+
+  # Used as the base secret for all MessageVerifiers in Rails, including the one protecting cookies.
+  secret_key_base: a7aa54a06fdbfe2e6ff5fcb70edacac6920f3157d4bee848233daf105cf9298896a5b2d689c533e55b76d00b0d7f59f2caf5180331b20b0fc842f1b01bc0b6ab
+
+# Remember not to checkin your GCS keyfile to a repository
+# google:
+#   service: GCS
+#   project: your_project
+#   credentials: <%= Rails.root.join("path/to/gcs.keyfile") %>
+#   bucket: your_own_bucket-<%= Rails.env %>
+
+# Use bin/rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
+# microsoft:
+#   service: AzureStorage
+#   storage_account_name: your_account_name
+#   storage_access_key: <%= Rails.application.credentials.dig(:azure_storage, :storage_access_key) %>
+#   container: your_container_name-<%= Rails.env %>
+
+# mirror:
+#   service: Mirror
+#   primary: local
+#   mirrors: [ amazon, google, microsoft ]
